@@ -106,3 +106,7 @@ a, a:hover, a:active, a:visited {
 .red {
     color: #c53535;
 }
+
+.commentText {
+    font-size: 12px;
+}
