@@ -1,0 +1,46 @@
+body {
+    height: 100%;
+    background-image: url("carbon_background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+
+}
+
+
+.topNavigation {
+    background-color: #250404;
+    overflow: hidden;
+
+}
+
+.topNavigation a.active {
+    background-color: #650606;
+}
+
+.topNavigation a {
+    color: white;
+    float:left;
+    display: block;
+    text-align: center;
+    padding: 14px 18px;
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.topNavigation a:hover {
+    background-color: #650606;
+}
+
+.topNavigation .icon {
+    display:none;
+}
+
+.hr {
+    border: 1px solid #250404;
+}
+
+.siteText {
+    color: white;
+}
+
