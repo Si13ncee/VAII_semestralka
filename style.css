@@ -8,14 +8,13 @@ body {
 
 
 .topNavigation {
-    background-color: #250404;
-    overflow: hidden;
-
+    font-size: 20px;
 }
 
-.topNavigation a.active {
-    background-color: #650606;
+li {
+    float: left;
 }
+
 
 .topNavigation a {
     color: white;
@@ -24,7 +23,13 @@ body {
     text-align: center;
     padding: 14px 18px;
     text-decoration: none;
-    font-size: 28px;
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .topNavigation a:hover {
@@ -35,11 +40,14 @@ body {
     display:none;
 }
 
-.hr {
-    border: 1px solid #250404;
-}
 
 .siteText {
     color: white;
 }
 
+.mainTextBlock {
+    background: rgba(0, 0, 0, 0.25);
+    margin-top: 25%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
