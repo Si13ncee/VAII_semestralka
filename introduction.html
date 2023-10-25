@@ -10,27 +10,144 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-light">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand"> <img src="death-knight-blood.jpg" alt="bdk" style="width:50px;" class="rounded-pill"> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar">
+                <span class="navbar-toggler-icon"> </span>
+            </button>
+            <!-- Links -->
 
-    <div class="container-fluid">
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="introduction.html">Introduction</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pve.html">PvE</a>
-            </li>
-        </ul>
+            <div class="collapse navbar-collapse justify-content-start topNavigation" id="topNavBar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="introduction.html">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pveMplus.html">PvE</a>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand"> <img src="death-knight-blood.jpg" alt="bdk" style="width:50px;" class="rounded-pill"> </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-2 my-2 border  mainText">
+        <h2 class="topBannerText">
+            Introduction
+        </h2>
+        <div class="basicText">
+
+        </div>
     </div>
-</nav>
-<div class="bdkLogo right"></div>
 
-<div class="text">
-</div>
+    <div class="container-fluid p-2 my-2 border  mainText">
+        <h2 class="topBannerText">
+            Cooldowns
+        </h2>
+        <p>The complexity of blood death knights comes to properly managing and planning defensive cooldowns, which they have a lot of, compared to other tanks in the game.</p>
+        <div class="basicText">
+
+            <table class="table table-bordered table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Death Strike</td>
+                        <td>Focuses dark power into a strike that deals (46.4256% of Attack power) Physical damage and heals you for 25.00% of all damage taken in the last 5 sec, minimum 7.0% of maximum health.</td>
+                    </tr>
+                    <tr>
+                        <td>Vampiric Blood</td>
+                        <td>
+                            Embrace your undeath, increasing your maximum health by 30% and increasing all healing and absorbs received by 30% for 10 sec.</td>
+                    </tr>
+                    <tr>
+                        <td>Icebound Fortitude</td>
+                        <td>
+                            Your blood freezes, granting immunity to Stun effects and reducing all damage you take by 30% for 8 sec.</td>
+                    </tr>
+                    <tr>
+                        <td>Rune Tap</td>
+                        <td>
+                            Reduces all damage taken by 20% for 4 sec.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Anti-Magic Shell</td>
+                        <td>Surrounds you in an Anti-Magic Shell for 5 sec, absorbing up to [Total health * 30 / 100 * (1 + Versatility) * 1.4 * 1.15] magic damage and preventing application of harmful magical effects. Damage absorbed generates Runic Power.</td>
+                    </tr>
+                    <tr>
+                        <td>Lichborne</td>
+                        <td>
+                            Draw upon unholy energy to become Undead for 10 sec, increasing Leech by 10%, reducing damage taken by 15%, and making you immune to Charm, Fear, and Sleep.</td>
+                    </tr>
+                    <tr>
+                        <td>Dancing Rune Weapon</td>
+                        <td>Summons a rune weapon for 8 sec that mirrors your melee attacks and bolsters your defenses.
+
+                            While active, you gain 40% parry chance.</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container-fluid p-2 my-2 border  mainText">
+        <h2 class="topBannerText">
+            Utility
+        </h2>
+        <div class="topBannerText">
+            We can divide our utility into two parts. One being a general utility, e.g. crowd control, and the other into party utility, which helps our team to survive or deal more damage. Here is the list of our utility skills.
+        </div>
+            <hr>
+        <table class="table table-bordered table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Death Grip</td>
+                    <td>Harnesses the energy that surrounds and binds all matter, drawing the target toward you.</td>
+                </tr>
+                <tr>
+                    <td>Blinding Sleet</td>
+                    <td>Targets in a cone in front of you are blinded, causing them to wander disoriented for 5 sec. Damage may cancel the effect.
+
+                        When Blinding Sleet ends, enemies are slowed by 50% for 6 sec.</td>
+                </tr>
+                <tr>
+                    <td>Asphyxiate</td>
+                    <td>
+                        Lifts the enemy target off the ground, crushing their throat with dark energy and stunning them for 5 sec.</td>
+                </tr>
+                <tr>
+                    <td>Anti-magic Zone</td>
+                    <td>Places an Anti-Magic Zone that reduces spell damage taken by party or raid members by 20%. The Anti-Magic Zone lasts for 8 sec or until it absorbs (Total health * 1.5 * (1 + Versatility)) damage.</td>
+                </tr>
+                <tr>
+                    <td>Chains of Ice</td>
+                    <td>
+                        Shackles the target with frozen chains, reducing movement speed by 70% for 8 sec.</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        </div>
+        <div class="basicText">
+
+        </div>
 
 </body>
 </html>
