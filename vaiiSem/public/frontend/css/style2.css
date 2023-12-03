@@ -1,0 +1,22 @@
+body {
+    background: url('images/main_bg.jpg') center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .card {
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+  }
+  .container {
+    flex-grow: 1;
+  }
