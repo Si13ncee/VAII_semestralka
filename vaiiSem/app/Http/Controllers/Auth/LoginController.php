@@ -32,7 +32,7 @@ class LoginController extends Controller
     {
         if(Auth::user()->permissions == '1') //1 = Admin Login
         {
-            return redirect('dashboard')->with('status','Welcome to your dashboard');
+            return redirect()->route('layouts.admin.index');
         }
         elseif(Auth::user()->permissions == '0') // Normal or Default User Login
         {
