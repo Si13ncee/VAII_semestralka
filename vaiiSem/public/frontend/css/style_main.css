@@ -47,6 +47,9 @@
     flex-direction: column;
     background-size: cover;
     background-position: center;
+
+
+    overflow-x: hidden;
   }
 
   main {
@@ -105,4 +108,22 @@
     border-color: #000;
     color: #fff; /* Text color on hover */
   }
+ /* Adjustments for the sidebar */
+.sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
 
+/* Adjust page content to allow space for sidebar */
+  .col-md-9,.col-lg-10 {
+    margin-left: 15rem; /* Adjust based on the sidebar width */
+  }
+
+  .sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background-color: #333;
+    color: white;
+}

@@ -33,4 +33,9 @@ class AdminMiddleware
                 return redirect('/home')->with('status','Please Login First');
             }
     }
+
+    public function index()
+    {
+        return view('home');
+    }
 }

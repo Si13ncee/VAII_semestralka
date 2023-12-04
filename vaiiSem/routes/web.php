@@ -20,11 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('layouts.admin');
 
-Route::group(['middleware' => ['auth','isAdmin']], function () {
-
+ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', function () {
-       return "Admin has logged on!";
-    });
- 
+        return view('layouts.admin');
+     });
  });
