@@ -75,7 +75,12 @@
     padding-bottom: 10%;
     color: white; 
   }
-
+  .content-bg {
+    background-image: url('images/main_bg.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    color: white; 
+  }
   .bg-gray {
     background-color: #9c9c9c;
   }
@@ -83,18 +88,6 @@
   
   .bg-white {
     background-color: #c5c5c5;
-  }
-
-  .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(70%); /* Adjust the brightness percentage */
-    z-index: 0; /* Set a lower z-index to place it behind other elements */
   }
 
   .custom-btn-outline:hover {

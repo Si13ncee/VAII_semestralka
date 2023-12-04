@@ -21,16 +21,13 @@
     </div>  
 
 <!-- Main Content -->
-<main class="wrapper d-flex align-items-stretch">
-        <div class="wrapper col-md-3 col-lg-2 bg-dark sidebar">
+<main class="d-flex align-items-stretch">
+        <div class="wrapper bg-dark sidebar">
             @include('layouts.siteParts.adminOnly.sidebar')
         </div>  
     
-        <div class="col"> 
-        <!-- Content area -->
-            <h1>Welcome to the Admin Dashboard</h1>
-        <!-- Include different sections, tables, forms, etc., based on your needs -->
-
+        <div class="col content content-bg"> 
+            @yield('content')
         </div>
     </div>
     
@@ -44,5 +41,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  @yield('scripts')
 </body>
 </html>

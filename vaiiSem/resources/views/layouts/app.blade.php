@@ -78,7 +78,7 @@
 
                                         @if(Auth::user()->isAdmin())
                                         <li>
-                                            <a class="dropdown-item" href="{{ route('layouts.admin') }}">
+                                            <a class="dropdown-item" href="{{ route('layouts.admin.index') }}">
                                                 Admin Dashboard  
                                             </a>
                                         </li>

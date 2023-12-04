@@ -20,10 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('layouts.admin');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('layouts.admin.index');
 
  Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('layouts.admin');
+        return view('layouts.admin.index');
      });
  });
