@@ -20,10 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('layouts.admin.index');
 
  Route::middleware(['auth', 'isAdmin'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('layouts.admin.index');
-     });
- });
+    Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index'])->name('dashboard');
+
+    Route::get('products', 'App\Http\Controllers\Admin\NewProductController@index');
+    Route::get('add-product', 'App\Http\Controllers\Admin\NewProductController@add');
+    Route::post('insert-category','App\Http\Controllers\Admin\NewProductController@insert');
+});
