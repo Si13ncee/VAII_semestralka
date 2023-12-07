@@ -15,9 +15,6 @@ class Product extends Model
         'slug',
         'description',
         'image',
-        'meta_title',
-        'meta_descip',
-        'meta_keywords',
 
     ];
 }

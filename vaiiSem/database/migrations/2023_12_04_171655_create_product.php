@@ -19,9 +19,6 @@ return new class extends Migration
             $table->tinyInteger('rating')->default('0');
             $table->integer('rating_count')->default('0');
             $table->string('image');
-            $table->string('meta_title');
-            $table->string('meta_descip');
-            $table->string('meta_keywords');
             $table->timestamps();
         });
     }

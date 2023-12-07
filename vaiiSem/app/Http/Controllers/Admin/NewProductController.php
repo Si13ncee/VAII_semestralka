@@ -30,10 +30,38 @@ class NewProductController extends Controller
         $product->name = $request->input('name');
         $product->slug = $request->input('slug');
         $product->description = $request->input('description');
-        $product->meta_title = $request->input('meta_title');
-        $product->meta_description = $request->input('meta_description');
-        $product->meta_keywords = $request->input('meta_keywords');
         $product->save();
-        return redirect('/dashboard')->with('status', "Product added Succesfully!");
+        return redirect('/dashboard');
+    }
+
+    public function edit($id) {
+
+        $product = Product::find($id);
+        return view("layouts.admin.product.edit", compact('product'));
+    }
+
+    public function update(Request $request, $id) {
+        $product = Product::find($id);
+
+        if ($request->hasFile('image')) {
+            $path = 'ProductImages/uploads/products/'.$product->image;
+
+            if(File::exists($path)) {
+                File::delete($path);
+            }
+
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time().'.'.$ext;
+            $file->move('ProductImages/uploads/products/' , $filename);
+            $product->image = $filename;
+        }
+
+
+        $product->name = $request->input('name');
+        $product->slug = $request->input('slug');
+        $product->description = $request->input('description');
+        $product->update();
+        return redirect('products');
     }
 }

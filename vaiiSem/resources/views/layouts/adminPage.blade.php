@@ -8,8 +8,8 @@
   <title>Admin Dashboard</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="frontend/css/style_main.css" rel="stylesheet">
-  <link href="frontened/css/sidebar.css" rel="stylesheet">
+  <link href="{{ asset('frontend/css/style_main.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontened/css/sidebar.css') }}" rel="stylesheet">
 
   
 </head>

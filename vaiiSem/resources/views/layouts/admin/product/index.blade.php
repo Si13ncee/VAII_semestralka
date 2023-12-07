@@ -26,10 +26,10 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->description }}</td>
                                     <td>
-                                        <img src="{{ asset('ProductImages/uploads/products/' . $item->image . '/' . ) }}" class="w-25" alt="image">
+                                        <img src="{{ asset('ProductImages/uploads/products/' . $item->image ) }}" class="w-25" alt="image">
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary"> Edit </button>
+                                        <a href="{{ url('edit-product/' . $item->id ) }}" class=" btn btn-primary"> Edit </a>
                                         <button class="btn btn-primary"> Delete </button>  
                                     </td>
                                 </tr>
