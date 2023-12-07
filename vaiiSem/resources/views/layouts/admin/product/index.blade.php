@@ -30,7 +30,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('edit-product/' . $item->id ) }}" class=" btn btn-primary"> Edit </a>
-                                        <button class="btn btn-primary"> Delete </button>  
+                                        <a href="{{ route('deleteProduct', $item->id) }}" class="btn btn-primary"> Delete </a>  
                                     </td>
                                 </tr>
                             @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class NewProductController extends Controller
 {
@@ -63,5 +64,20 @@ class NewProductController extends Controller
         $product->description = $request->input('description');
         $product->update();
         return redirect('products');
+    }
+
+    public function deleteProduct($id) {
+        $product = Product::find($id);
+
+        if($product->image)
+        {
+            $path = "ProductImages/uploads/products/".$product->image;
+            if (File::exists($path)) {
+                File::delete($path);
+            }
+        }
+        $product->delete();
+        return redirect('products');
+        
     }
 }

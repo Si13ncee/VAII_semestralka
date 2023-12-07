@@ -29,4 +29,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('insert-product','App\Http\Controllers\Admin\NewProductController@insert');
     Route::get('edit-product/{id}', [App\Http\Controllers\Admin\NewProductController::class,'edit']);
     Route::put('update-product/{id}', [App\Http\Controllers\Admin\NewProductController::class, 'update'])->name('updateProduct');
+    Route::get('delete-category/{id}', [App\Http\Controllers\Admin\NewProductController::class, 'deleteProduct'])->name('deleteProduct');
 });
