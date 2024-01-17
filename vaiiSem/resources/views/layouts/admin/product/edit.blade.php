@@ -5,7 +5,7 @@
 
     <div class="px-5">
         <div class="col py-2">
-            <div class="card">
+            <div class="card nonhoverable-card">
                 <div class="card-header">
                     Edit Product
                 </div>

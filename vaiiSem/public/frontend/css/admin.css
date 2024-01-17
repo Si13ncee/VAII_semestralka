@@ -1,15 +1,4 @@
 /* New styles for the pulsating effect */
-@keyframes pulse {
-    0% {
-      background-color: #ececec; /* Initial color */
-    }
-    50% {
-      background-color: #dadada; /* Intermediate color */
-    }
-    100% {
-      background-color: #ececec; /* Return to initial color */
-    }
-  }
 
   .card {
     transition: transform 0.3s; /* adds a smooth transition */
@@ -19,13 +8,6 @@
     color: black; /* Set the text color to black */
   }
 
-  .card:hover {
-    animation: pulse 1.2s infinite; /* Apply the animation on hover */
-    transform: scale(1.05);
-    z-index: 2; /* Bring the hovered card to the front */
-    text-decoration: none;
-    color: black; /* Set the text color to black */
-  }
   
 
   .card .card-body {
