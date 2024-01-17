@@ -15,7 +15,7 @@
                             <a class="nav-link" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">Catalogue</a>
+                            <a class="nav-link" href="{{ url('/catalogue') }}">Catalogue</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">About Us</a>
