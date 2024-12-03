@@ -41,30 +41,48 @@ class NewProductController extends Controller
         return view("layouts.admin.product.edit", compact('product'));
     }
 
-    public function update(Request $request, $id) {
-        $product = Product::find($id);
+    public function update(Request $request, $id)
+{
+    $product = Product::find($id);
 
-        if ($request->hasFile('image')) {
-            $path = 'ProductImages/uploads/products/'.$product->image;
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'slug' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-            if(File::exists($path)) {
-                File::delete($path);
-            }
+    if ($request->has('delete_image') && $product->image) {
+        $path = 'ProductImages/uploads/products/' . $product->image;
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+        $product->image = null; 
+    }
 
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time().'.'.$ext;
-            $file->move('ProductImages/uploads/products/' , $filename);
-            $product->image = $filename;
+
+    if ($request->hasFile('image')) {
+        $path = 'ProductImages/uploads/products/' . $product->image;
+        if (File::exists($path)) {
+            File::delete($path);
         }
 
-
-        $product->name = $request->input('name');
-        $product->slug = $request->input('slug');
-        $product->description = $request->input('description');
-        $product->update();
-        return redirect('products');
+        $file = $request->file('image');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $ext;
+        $file->move('ProductImages/uploads/products/', $filename);
+        $product->image = $filename;
     }
+
+
+    $product->name = $request->input('name');
+    $product->slug = $request->input('slug');
+    $product->description = $request->input('description');
+    $product->update();
+
+    return redirect('products')->with('success', 'Product updated successfully!');
+}
+
 
     public function deleteProduct($id) {
         $product = Product::find($id);
