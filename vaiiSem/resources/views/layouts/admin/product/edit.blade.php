@@ -81,7 +81,7 @@
             document.getElementById('description-error').textContent = 'Description is required.';
         }
 
-        // Validate Image (optional, but check format if provided)
+        // Validate Image
         const image = document.getElementById('image');
         if (image.files.length > 0) {
             const file = image.files[0];
@@ -92,7 +92,6 @@
             }
         }
 
-        // If validation fails, prevent form submission
         if (!valid) {
             e.preventDefault();
         }

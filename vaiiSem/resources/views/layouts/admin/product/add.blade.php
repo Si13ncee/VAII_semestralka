@@ -45,9 +45,6 @@
     document.getElementById('product-form').addEventListener('submit', function (e) {
         let valid = true;
 
-        // Clear previous errors
-        // document.querySelectorAll('.text-danger').forEach(error => error.textContent = '');
-
         // Validate Name
         const name = document.getElementById('name');
         if (name.value.trim() === '') {
@@ -76,7 +73,6 @@
             document.getElementById('image-error').textContent = 'Image is required.';
         }
 
-        // If validation fails, prevent form submission
         if (!valid) {
             e.preventDefault();
         }
