@@ -16,12 +16,18 @@
                             <label for="name">Name</label>
                             <input type="text" id="name" value="{{ $product->name }}" class="form-control" name="name" required>
                             <small id="name-error" class="text-danger"></small>
+
+                            <label for="price">Price</label>
+                            <input type="text" id="price" value="{{ $product->price }}" class="form-control" name="price" required>
+                            <small id="price-error" class="text-danger"></small>
                         </div>
+
                         <div class="col-md-12">
                             <label for="description">Description</label>
                             <textarea id="description" name="description" cols="30" rows="5" class="form-control" required>{{ $product->description }}</textarea>
                             <small id="description-error" class="text-danger"></small>
                         </div>
+                        
                         <div class="col-md-12">
                             @if($product->image)
                                 <div class="mb-2">

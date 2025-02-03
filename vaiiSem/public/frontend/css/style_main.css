@@ -11,6 +11,16 @@
     }
   }
 
+  .card .no-transition {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .card.no-hover:hover {
+    transform: none !important;
+    animation: none !important;
+  }
+
   .card {
     transition: transform 0.3s; /* adds a smooth transition */
     z-index: 1; /* default z-index */

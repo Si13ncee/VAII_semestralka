@@ -1,5 +1,12 @@
 /* New styles for the pulsating effect */
 
+  .cardNT {
+    z-index: 1; /* default z-index */
+    height: 100%;
+    text-decoration: none;
+    color: black; /* Set the text color to black */
+    flex-grow: 1;
+  }
   .card {
     transition: transform 0.3s; /* adds a smooth transition */
     z-index: 1; /* default z-index */
