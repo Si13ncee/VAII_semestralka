@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-4 mb-4">
+    <div class="row card no-transition no-hover">
+        <div class="col-md-4 mb-4 mt-4">
             <img src="{{ asset('ProductImages/uploads/products/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid">
         </div>
         <div class="col-md-8 mb-4">
@@ -11,10 +11,15 @@
             <p><strong>Cena:</strong> {{ $product->price }} €</p>
             <p><strong>Hodnotenie:</strong> ⭐ {{ $product->rating }} ({{ $product->rating_count }} hodnotení)</p>
             <p>{{ $product->description }}</p>
-            <a href="#" class="btn btn-primary">Pridať do košíka</a>
+            <a href="#" class="btn btn-primary bg-dark">Pridať do košíka</a>
             
-            <!-- Formulár na pridanie recenzie len pre prihlásených -->
-            @auth
+            
+        </div>
+    </div>
+    <!-- Formulár na pridanie recenzie len pre prihlásených -->
+    @auth
+    <div class="container mt-4">
+        <div class="row card no-transition no-hover">
             <hr>
             <h4>Pridajte recenziu:</h4>
             <form action="{{ route('reviews.store', $product->id) }}" method="POST">
@@ -35,17 +40,15 @@
                     <label for="review">Recenzia:</label>
                     <textarea name="review" id="review" class="form-control" rows="4" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary mt-2">Pridať recenziu</button>
+                <button type="submit" class="btn btn-primary mt-2 mb-2 bg-dark">Pridať recenziu</button>
             </form>
             @endauth
-
             <!-- Ak nie je prihlásený používateľ -->
             @guest
-            <p>Pre pridanie recenzie sa musíte prihlásiť.</p>
+            <p>## Pre pridanie recenzie sa musíte prihlásiť ##</p>
             @endguest
         </div>
     </div>
-
     
     <div class="container mt-4">
         <div class="row" id="reviews-list">
