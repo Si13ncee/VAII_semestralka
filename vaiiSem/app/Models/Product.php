@@ -23,4 +23,12 @@ class Product extends Model
     return $this->hasMany(Review::class);
 }
 
+protected static function boot() {
+    parent::boot();
+
+    static::deleting(function ($product) {
+        $product->reviews()->delete();
+    });
+}
+
 }
