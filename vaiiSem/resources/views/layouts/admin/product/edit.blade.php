@@ -17,11 +17,6 @@
                             <input type="text" id="name" value="{{ $product->name }}" class="form-control" name="name" required>
                             <small id="name-error" class="text-danger"></small>
                         </div>
-                        <div class="col-md-6">
-                            <label for="slug">Slug</label>
-                            <input type="text" id="slug" value="{{ $product->slug }}" class="form-control" name="slug" required>
-                            <small id="slug-error" class="text-danger"></small>
-                        </div>
                         <div class="col-md-12">
                             <label for="description">Description</label>
                             <textarea id="description" name="description" cols="30" rows="5" class="form-control" required>{{ $product->description }}</textarea>
@@ -65,13 +60,6 @@
         if (name.value.trim() === '') {
             valid = false;
             document.getElementById('name-error').textContent = 'Name is required.';
-        }
-
-        // Validate Slug
-        const slug = document.getElementById('slug');
-        if (slug.value.trim() === '') {
-            valid = false;
-            document.getElementById('slug-error').textContent = 'Slug is required.';
         }
 
         // Validate Description

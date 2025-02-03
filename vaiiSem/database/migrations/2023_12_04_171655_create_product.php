@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug');
+            $table->unsignedBigInteger('slug')->nullable();
             $table->longText('description');
             $table->tinyInteger('rating')->default('0');
             $table->integer('rating_count')->default('0');

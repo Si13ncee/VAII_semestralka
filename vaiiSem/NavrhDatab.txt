@@ -1,0 +1,11 @@
+USER
+-> meno
+-> email
+-> heslo
+-> oprávnenie
+
+
+Product
+-> meno
+-> slug (musí sa nejako generovať (asi môže byť idčko))
+-> 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class NewProductController extends Controller
+class ProductController extends Controller
 {
     public function index() {
         $products = Product::all();
@@ -29,10 +29,12 @@ class NewProductController extends Controller
         }
 
         $product->name = $request->input('name');
-        $product->slug = $request->input('slug');
+    
         $product->description = $request->input('description');
         $product->save();
-        return redirect('/dashboard');
+        $product->slug = $product->id;
+        $product->save();
+        return redirect('/dashboard')->with('success', 'Produkt bol pridaný.');
     }
 
     public function edit($id) {
@@ -47,7 +49,6 @@ class NewProductController extends Controller
 
     $request->validate([
         'name' => 'required|string|max:255',
-        'slug' => 'required|string|max:255',
         'description' => 'required|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
@@ -76,10 +77,10 @@ class NewProductController extends Controller
 
 
     $product->name = $request->input('name');
-    $product->slug = $request->input('slug');
     $product->description = $request->input('description');
     $product->update();
 
+    $product->slug = $product->id;
     return redirect('products')->with('success', 'Product updated successfully!');
 }
 
@@ -98,4 +99,18 @@ class NewProductController extends Controller
         return redirect('products');
         
     }
+
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%")
+            ->get();
+
+        return response()->json($products);
+    }
+    
 }
