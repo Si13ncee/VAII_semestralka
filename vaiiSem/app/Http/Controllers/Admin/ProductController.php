@@ -103,14 +103,16 @@ class ProductController extends Controller
 
 
     public function search(Request $request)
-    {
-        $query = $request->input('query');
+{
+    $query = $request->input('query');
+    $page = $request->input('page', 1);
+    $perPage = 6; // Počet produktov na jeden load
 
-        $products = Product::where('name', 'LIKE', "%{$query}%")
-            ->orWhere('description', 'LIKE', "%{$query}%")
-            ->get();
+    $products = Product::where('name', 'LIKE', "%{$query}%")
+                        ->orWhere('description', 'LIKE', "%{$query}%")
+                        ->paginate($perPage, ['*'], 'page', $page);
 
-        return response()->json($products);
-    }
+    return response()->json($products);
+}
     
 }

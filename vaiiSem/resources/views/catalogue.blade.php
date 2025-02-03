@@ -47,48 +47,70 @@
     </div>
   </main>
 
-      <script>
-        $(document).ready(function () {
-        $(".search-form").submit(function (event) {
-        event.preventDefault();
+  <!-- AJAX script -->
+  <script>
+    $(document).ready(function () {
+        let page = 1;
+        let searchQuery = ""; 
+        let loading = false;
+        let hasMoreData = true;
+        
+        function loadProducts() {
+            if (!hasMoreData || loading) return;
 
-        let searchQuery = $("#search-input").val();
-
-        $.ajax({
-            url: "/search",
-            type: "GET",
-            data: { query: searchQuery },
-            dataType: "json",
-            success: function (response) {
-                $("#product-list").html("");
-
-                if (response.length > 0) {
-                    response.forEach(product => {
-                        $("#product-list").append(`
-                            <div class="col-md-4 mb-4">
-                                <div class="card">
-                                    <img src="ProductImages/uploads/products/${product.image}" alt="${product.name}" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${product.name}</h5>
-                                        <p class="card-text">${product.description}</p>
-                                        <a href="#" class="btn btn-primary bg-dark">Add to Cart</a>
+            loading = true;
+            $.ajax({
+                url: "/search",
+                type: "GET",
+                data: { query: searchQuery, page: page },
+                dataType: "json",
+                success: function (response) {
+                    if (response.data.length > 0) {
+                        response.data.forEach(product => {
+                            $("#product-list").append(`
+                                <div class="col-md-4 mb-4">
+                                    <div class="card">
+                                        <img src="ProductImages/uploads/products/${product.image}" alt="${product.name}" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${product.name}</h5>
+                                            <p class="card-text">${product.description}</p>
+                                            <a href="#" class="btn btn-primary bg-dark">Add to Cart</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        `);
-                    });
-                } else {
-                    $("#product-list").html("<p class='text-center'>Žiadne výsledky.</p>");
+                            `);
+                        });
+                        page++;
+                    } else {
+                        hasMoreData = false;
+                    }
+                    loading = false;
+                },
+                error: function () {
+                    alert("Chyba pri načítaní produktov!");
+                    loading = false;
                 }
-            },
-            error: function () {
-                alert("Chyba pri vyhľadávaní!");
+            });
+        }
+
+        $(".search-form").submit(function (event) {
+            event.preventDefault();
+            searchQuery = $("#search-input").val();
+            page = 1;
+            hasMoreData = true;
+            $("#product-list").html(""); 
+            loadProducts();
+        });
+
+        
+        $(window).scroll(function () {
+            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+                loadProducts();
             }
         });
     });
-});
+</script>
 
-    </script>
     
 
   <div class="wrapper">
