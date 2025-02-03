@@ -109,9 +109,8 @@
   top: 0;
 }
 
-/* Adjust page content to allow space for sidebar */
   .col-md-9,.col-lg-10 {
-    margin-left: 15rem; /* Adjust based on the sidebar width */
+    margin-left: 15rem;
   }
 
   .sidebar {
@@ -120,4 +119,10 @@
     top: 0;
     background-color: #333;
     color: white;
+}
+
+.custom-dropdown {
+  width: 150px;
+  font-size: 0.85rem;
+  padding: 0.25rem;
 }

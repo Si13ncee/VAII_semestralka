@@ -27,14 +27,27 @@
       <a class="btn btn-primary bg-dark"  href="catalogue.html">Browse Catalogue</a>
     </div>
   </header>
+  
+<!-- Spojené vyhľadávacie pole a filter na zoradenie -->
+<div class="container mt-4 text-center">
+  <form class="search-form form-inline justify-content-center d-flex">
+      <!-- Vyhľadávacie pole -->
+      <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      
+      <!-- Dropdown menu na triedenie, menšia veľkosť -->
+      <select id="sort-select" class="form-select ml-2 custom-dropdown">
+          <option value="price_asc">Cena (od najnižšej)</option>
+          <option value="price_desc">Cena (od najvyššej)</option>
+          <option value="rating_desc">Hodnotenie (najlepšie)</option>
+          <option value="rating_asc">Hodnotenie (najhoršie)</option>
+      </select>
 
-  <!-- Search bar -->
-  <div class="container mt-4 text-center">
-    <form class="search-form form-inline justify-content-center">
-        <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary my-2 my-sm-0 custom-btn-outline" type="submit">Search</button>
-    </form>
-  </div>
+      <!-- Tlačidlo na vyhľadávanie -->
+      <button class="btn btn-outline-primary my-2 my-sm-0 custom-btn-outline ml-2" type="submit">Search</button>
+  </form>
+</div>
+    
+  
 
 
 <main>
@@ -47,69 +60,94 @@
     </div>
   </main>
 
-  <!-- AJAX script -->
-  <script>
-    $(document).ready(function () {
-        let page = 1;
-        let searchQuery = ""; 
-        let loading = false;
-        let hasMoreData = true;
-        
-        function loadProducts() {
-            if (!hasMoreData || loading) return;
 
-            loading = true;
-            $.ajax({
-                url: "/search",
-                type: "GET",
-                data: { query: searchQuery, page: page },
-                dataType: "json",
-                success: function (response) {
-                    if (response.data.length > 0) {
-                        response.data.forEach(product => {
-                            $("#product-list").append(`
-                                <div class="col-md-4 mb-4">
-                                    <div class="card">
-                                        <img src="ProductImages/uploads/products/${product.image}" alt="${product.name}" class="card-img-top">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${product.name}</h5>
-                                            <p class="card-text">${product.description}</p>
+
+<script>
+  $(document).ready(function () {
+    let page = 1;
+    let searchQuery = ""; 
+    let loading = false;
+    let hasMoreData = true;
+    let sortBy = $("#sort-select").val(); // Defaultne zoradenie podľa ceny
+
+    function truncateText(text, maxLength) {
+        return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+    }
+
+    function loadProducts() {
+        if (!hasMoreData || loading) return;
+
+        loading = true;
+        $.ajax({
+            url: "/search", // Uistite sa, že toto je správna URL adresa
+            type: "GET",
+            data: { query: searchQuery, page: page, sortBy: sortBy },
+            dataType: "json",
+            success: function (response) {
+                if (response.data.length > 0) {
+                    response.data.forEach(product => {
+                        $("#product-list").append(`
+                            <div class="col-md-4 mb-4">
+                                <div class="card position-relative">
+                                    <img src="ProductImages/uploads/products/${product.image}" alt="${product.name}" class="card-img-top">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">${product.name}</h5>
+                                        <p class="card-text">${truncateText(product.description, 100)}</p>
+                                        <p class="card-text"><strong>Cena:</strong> ${product.price} €</p> 
+                                        
+                                        <div class="mt-auto d-flex justify-content-between align-items-center">
                                             <a href="#" class="btn btn-primary bg-dark">Add to Cart</a>
+                                            <div class="rating text-muted small text-end">
+                                                ⭐ ${product.rating} (${product.rating_count})
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            `);
-                        });
-                        page++;
-                    } else {
-                        hasMoreData = false;
-                    }
-                    loading = false;
-                },
-                error: function () {
-                    alert("Chyba pri načítaní produktov!");
-                    loading = false;
+                            </div>
+                        `);
+                    });
+                    page++;
+                } else {
+                    hasMoreData = false;
                 }
-            });
-        }
-
-        $(".search-form").submit(function (event) {
-            event.preventDefault();
-            searchQuery = $("#search-input").val();
-            page = 1;
-            hasMoreData = true;
-            $("#product-list").html(""); 
-            loadProducts();
-        });
-
-        
-        $(window).scroll(function () {
-            if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-                loadProducts();
+                loading = false;
+            },
+            error: function () {
+                alert("Chyba pri načítaní produktov!");
+                loading = false;
             }
         });
+    }
+
+    // Vyhľadávanie
+    $(".search-form").submit(function (event) {
+        event.preventDefault();
+        searchQuery = $("#search-input").val();
+        page = 1;
+        hasMoreData = true;
+        $("#product-list").html(""); 
+        loadProducts();
     });
+
+    // Posunom na spodok sa načítajú ďalšie produkty
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+            loadProducts();
+        }
+    });
+
+    // Zmena triedenia (sortovania)
+    $("#sort-select").change(function () {
+        sortBy = $(this).val();  // Zmena hodnoty sortovania
+        page = 1;  // Reset na prvú stránku
+        hasMoreData = true;  // Nastavenie na True, aby sa načítavali ďalšie produkty
+        $("#product-list").html("");  // Vyčistiť zoznam produktov
+        loadProducts();  // Načítať produkty s novým zoradením
+    });
+});
 </script>
+
+
 
     
 
