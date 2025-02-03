@@ -139,12 +139,30 @@ class ProductController extends Controller
     
 
     public function show($id)
-{
-    // Načítajte produkt podľa id
-    $product = Product::findOrFail($id);
+    {
+        $product = Product::findOrFail($id);
+        $reviews = $product->reviews; // Získanie recenzií pre tento produkt
+        return view('showProduct', compact('product', 'reviews'));
+    }
 
-    // Vráťte view s produktom
-    return view('showProduct', compact('product'));
+    public function storeReview(Request $request, $productId)
+{
+    $request->validate([
+        'author' => 'required|string|max:255',
+        'review' => 'required|string|max:1000',
+        'rating' => 'required|integer|between:1,5',
+    ]);
+
+    $review = new Review();
+    $review->product_id = $productId;
+    $review->author = $request->author;
+    $review->review = $request->review;
+    $review->rating = $request->rating;
+    $review->save();
+
+    return redirect()->route('product.show', $productId)->with('success', 'Recenzia bola pridaná.');
 }
+
+    
 
 }

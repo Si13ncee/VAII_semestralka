@@ -126,3 +126,9 @@
   font-size: 0.85rem;
   padding: 0.25rem;
 }
+
+.product-details {
+  background-color: #f0f0f0; /* Svetlosivá farba */
+  padding: 20px; /* Pridanie medzery okolo textu */
+  border-radius: 8px; /* Okrúhlené rohy (voliteľné) */
+}

@@ -23,7 +23,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/catalogue', [App\Http\Controllers\CatalogueController::class, 'index'])->name('catalogue');
 Route::get('/search', [App\Http\Controllers\Admin\ProductController::class, 'search']);
 Route::get('/product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'show'])->name('showProduct');
+Route::post('/product/{productId}/review', [App\Http\Controllers\Admin\ProductController::class, 'storeReview'])->name('reviews.store');
+Route::get('/product/{productId}/reviews', [App\Http\Controllers\ReviewController::class, 'loadReviews']);
 
+
+Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
 
  Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index'])->name('dashboard');
