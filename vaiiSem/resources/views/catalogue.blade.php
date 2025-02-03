@@ -91,7 +91,7 @@
                                 <div class="card position-relative">
                                     <img src="ProductImages/uploads/products/${product.image}" alt="${product.name}" class="card-img-top">
                                     <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">${product.name}</h5>
+                                        <h5 class="card-title"><a href="/product/${product.id}">${product.name}</a></h5>
                                         <p class="card-text">${truncateText(product.description, 100)}</p>
                                         <p class="card-text"><strong>Cena:</strong> ${product.price} €</p> 
                                         

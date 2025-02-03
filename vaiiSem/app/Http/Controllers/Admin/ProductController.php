@@ -137,5 +137,14 @@ class ProductController extends Controller
         return response()->json($products);
     }
     
-    
+
+    public function show($id)
+{
+    // Načítajte produkt podľa id
+    $product = Product::findOrFail($id);
+
+    // Vráťte view s produktom
+    return view('showProduct', compact('product'));
+}
+
 }
