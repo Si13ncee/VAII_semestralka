@@ -8,7 +8,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="{{ asset('frontend/css/style_main.css') }}" rel="stylesheet">
-  
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 <body class="d-flex flex-column min-vh-100 bg-gray">
 
@@ -94,9 +95,12 @@
                                         <h5 class="card-title"><a href="/product/${product.id}">${product.name}</a></h5>
                                         <p class="card-text">${truncateText(product.description, 100)}</p>
                                         <p class="card-text"><strong>Cena:</strong> ${product.price} €</p> 
-                                        
+
                                         <div class="mt-auto d-flex justify-content-between align-items-center">
-                                            <a href="#" class="btn btn-primary bg-dark">Add to Cart</a>
+                                            <form action="/cart/add/${product.id}" method="POST">
+                                                <input type="hidden" name="_token" value="${$('meta[name="csrf-token"]').attr('content')}">
+                                                <button type="submit" class="btn btn-primary">Pridať do košíka</button>
+                                            </form>
                                             <div class="rating text-muted small text-end">
                                                 ⭐ ${product.rating} (${product.rating_count})
                                             </div>

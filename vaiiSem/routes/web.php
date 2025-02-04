@@ -25,6 +25,10 @@ Route::get('/search', [App\Http\Controllers\Admin\ProductController::class, 'sea
 Route::get('/product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'show'])->name('showProduct');
 Route::post('/product/{productId}/review', [App\Http\Controllers\Admin\ProductController::class, 'storeReview'])->name('reviews.store');
 Route::get('/product/{productId}/reviews', [App\Http\Controllers\ReviewController::class, 'loadReviews']);
+Route::post('/cart/add/{productId}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
+
+
 
 
 Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');

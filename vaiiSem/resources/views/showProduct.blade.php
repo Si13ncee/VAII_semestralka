@@ -11,7 +11,11 @@
             <p><strong>Cena:</strong> {{ $product->price }} €</p>
             <p><strong>Hodnotenie:</strong> ⭐ {{ $product->rating }} ({{ $product->rating_count }} hodnotení)</p>
             <p>{{ $product->description }}</p>
-            <a href="#" class="btn btn-primary bg-dark">Pridať do košíka</a>
+            
+            <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-primary">Pridať do košíka</button>
+            </form>
             
             
         </div>

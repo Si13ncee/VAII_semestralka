@@ -16,6 +16,11 @@
                             <input type="text" id="name" class="form-control" name="name" required>
                             <small id="name-error" class="text-danger"></small>
                         </div>
+                        <div class="col-md-6">
+                            <label for="price">Price</label>
+                            <input type="text" id="price" class="form-control" name="price" required>
+                            <small id="price-error" class="text-danger"></small>
+                        </div>
                         <div class="col-md-12">
                             <label for="description">Description</label>
                             <textarea id="description" name="description" cols="30" rows="5" class="form-control" required></textarea>
@@ -52,6 +57,24 @@
         if (description.value.trim() === '') {
             valid = false;
             document.getElementById('description-error').textContent = 'Description is required.';
+        }
+
+        // Validate Price
+        const priceInput = document.getElementById('price');
+        const priceValue = priceInput.value.trim();
+
+        // Skontrolujeme, či je cena prázdna
+        if (priceValue === '') {
+            valid = false;
+            document.getElementById('price-error').textContent = 'Price is required.';
+        }
+        // Skontrolujeme, či je cena číslo a či je väčšia ako 0
+        else if (isNaN(priceValue) || parseFloat(priceValue) <= 0) {
+            valid = false;
+            document.getElementById('price-error').textContent = 'Please enter a valid price greater than 0.';
+        } else {
+            // Cena je platná
+            document.getElementById('price-error').textContent = '';  // Vymažeme chybu
         }
 
         // Validate Image
