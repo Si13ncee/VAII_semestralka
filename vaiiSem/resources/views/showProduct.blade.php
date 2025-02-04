@@ -66,15 +66,15 @@
 
 <script>
     $(document).ready(function () {
-        let page = 1; // Počiatočná stránka
-        let productId = {{ $product->id }}; // ID produktu, na ktorom sa nachádzame
+        let page = 1;
+        let productId = {{ $product->id }};
         let loading = false;
     
         function loadReviews() {
             if (loading) return;
     
             loading = true;
-            $('#loading').show(); // Zobraziť "Načítavam" správu
+            $('#loading').show();
     
             $.ajax({
                 url: '/product/' + productId + '/reviews',

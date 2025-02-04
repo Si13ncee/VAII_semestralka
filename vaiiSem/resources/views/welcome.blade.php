@@ -6,7 +6,9 @@
   <title>Tech H4ven</title>
   
   <!-- Bootstrap CSS -->
+  <!-- Styles -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link href="frontend/css/style_main.css" rel="stylesheet">
   
 </head>
@@ -35,7 +37,6 @@
     <!-- 1st row of cards -->
     <div class="row">
 
-      <!-- Add product category cards here -->
       <div class="col-md-4 mb-4">
         <a href="#" class="card d-flex flex-column justify-content-between">
           <div class="card-body">
@@ -83,7 +84,6 @@
           </div>
         </a>
       </div>
-      <!-- Add more categories as needed -->
     </div>
     </div>
   </main>

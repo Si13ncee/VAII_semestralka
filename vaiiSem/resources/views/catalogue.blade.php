@@ -6,7 +6,9 @@
   <title>Tech H4ven</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link href="{{ asset('frontend/css/style_main.css') }}" rel="stylesheet">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -29,13 +31,9 @@
     </div>
   </header>
   
-<!-- Spojené vyhľadávacie pole a filter na zoradenie -->
 <div class="container mt-4 text-center">
   <form class="search-form form-inline justify-content-center d-flex">
-      <!-- Vyhľadávacie pole -->
       <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      
-      <!-- Dropdown menu na triedenie, menšia veľkosť -->
       <select id="sort-select" class="form-select ml-2 custom-dropdown">
           <option value="price_asc">Cena (od najnižšej)</option>
           <option value="price_desc">Cena (od najvyššej)</option>
@@ -43,7 +41,6 @@
           <option value="rating_asc">Hodnotenie (najhoršie)</option>
       </select>
 
-      <!-- Tlačidlo na vyhľadávanie -->
       <button class="btn btn-outline-primary my-2 my-sm-0 custom-btn-outline ml-2" type="submit">Search</button>
   </form>
 </div>
@@ -69,7 +66,7 @@
     let searchQuery = ""; 
     let loading = false;
     let hasMoreData = true;
-    let sortBy = $("#sort-select").val(); // Defaultne zoradenie podľa ceny
+    let sortBy = $("#sort-select").val();
 
     function truncateText(text, maxLength) {
         return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
@@ -80,7 +77,7 @@
 
         loading = true;
         $.ajax({
-            url: "/search", // Uistite sa, že toto je správna URL adresa
+            url: "/search",
             type: "GET",
             data: { query: searchQuery, page: page, sortBy: sortBy },
             dataType: "json",
@@ -142,11 +139,11 @@
 
     // Zmena triedenia (sortovania)
     $("#sort-select").change(function () {
-        sortBy = $(this).val();  // Zmena hodnoty sortovania
-        page = 1;  // Reset na prvú stránku
-        hasMoreData = true;  // Nastavenie na True, aby sa načítavali ďalšie produkty
-        $("#product-list").html("");  // Vyčistiť zoznam produktov
-        loadProducts();  // Načítať produkty s novým zoradením
+        sortBy = $(this).val();
+        page = 1;
+        hasMoreData = true;
+        $("#product-list").html("");
+        loadProducts();
     });
 });
 </script>

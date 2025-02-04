@@ -12,10 +12,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->foreignId('product_id')->constrained('product')->onDelete('cascade'); // Prepojenie s produktom
-            $table->string('author'); // Meno autora recenzie
-            $table->text('review'); // Text recenzie
-            $table->tinyInteger('rating')->default(1); // Hodnotenie od 1 do 5
+            $table->foreignId('product_id')->constrained('product')->onDelete('cascade');
+            $table->string('author');
+            $table->text('review');
+            $table->tinyInteger('rating')->default(1);
             $table->timestamps();
         });
     }

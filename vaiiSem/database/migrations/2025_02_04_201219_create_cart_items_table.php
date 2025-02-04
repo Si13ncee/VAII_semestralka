@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
             
-            // Cudzí kľúč na users
+           
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            // Cudzí kľúč na product
+            
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
 

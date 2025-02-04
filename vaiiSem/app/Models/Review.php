@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
-
-    // Určte, ktoré stĺpce sú prístupné pre hromadné priradenie (mass assignment)
     protected $fillable = [
         'product_id',
         'author',

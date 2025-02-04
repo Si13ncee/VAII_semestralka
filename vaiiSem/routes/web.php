@@ -27,9 +27,10 @@ Route::post('/product/{productId}/review', [App\Http\Controllers\Admin\ProductCo
 Route::get('/product/{productId}/reviews', [App\Http\Controllers\ReviewController::class, 'loadReviews']);
 Route::post('/cart/add/{productId}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'showCart'])->name('cart.show');
-
 Route::delete('/cart/remove/{itemId}', [App\Http\Controllers\CartController::class, 'removeItem'])->name('cart.remove');
-
+Route::put('/cart/update/{itemId}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+Route::get('/checkout/address', [App\Http\Controllers\CheckoutController::class, 'address'])->name('checkout.address');
+Route::post('/checkout/review', [App\Http\Controllers\CheckoutController::class, 'review'])->name('checkout.review');
 
 
 

@@ -22,24 +22,24 @@
   }
 
   .card {
-    transition: transform 0.3s; /* adds a smooth transition */
-    z-index: 1; /* default z-index */
+    transition: transform 0.3s;
+    z-index: 1;
     height: 100%;
     text-decoration: none;
-    color: black; /* Set the text color to black */
+    color: black;
   }
 
   .card:hover {
-    animation: pulse 1.2s infinite; /* Apply the animation on hover */
+    animation: pulse 1.2s infinite;
     transform: scale(1.05);
-    z-index: 2; /* Bring the hovered card to the front */
+    z-index: 2;
     text-decoration: none;
-    color: black; /* Set the text color to black */
+    color: black;
   }
   
 
   .card .card-body {
-    flex-grow: 1; /* Allow the body to grow within the flex container */
+    flex-grow: 1;
   }
   
   footer {
@@ -48,7 +48,7 @@
   }
 
   .noDeco {
-    text-decoration: none; /* Remove default underline on links */
+    text-decoration: none;
   }
   
   body {
@@ -75,7 +75,7 @@
   }
 
  .mb-4 {
-    margin-bottom: 1.5rem !important; /* Adjust the spacing between rows */
+    margin-bottom: 1.5rem !important;
   } 
 
   .header-bg {
@@ -92,6 +92,7 @@
     background-position: center; 
     color: white; 
   }
+
   .bg-gray {
     background-color: #9c9c9c;
   }
@@ -104,15 +105,15 @@
   .custom-btn-outline:hover {
     border-color: #000;
     background-color: grey;
-    color: #fff; /* Optional: Set text color to black */
+    color: #fff;
   }
 
   .custom-btn-outline {
     background-color: #000;
     border-color: #000;
-    color: #fff; /* Text color on hover */
+    color: #fff;
   }
- /* Adjustments for the sidebar */
+ 
 .sidebar {
   height: 100vh;
   position: sticky;
@@ -138,7 +139,7 @@
 }
 
 .product-details {
-  background-color: #f0f0f0; /* Svetlosivá farba */
-  padding: 20px; /* Pridanie medzery okolo textu */
-  border-radius: 8px; /* Okrúhlené rohy (voliteľné) */
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
 }

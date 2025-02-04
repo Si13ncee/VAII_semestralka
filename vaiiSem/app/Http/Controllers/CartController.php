@@ -35,6 +35,7 @@ class CartController extends Controller
                 $cart[$productId] = [
                     'name' => $product->name,
                     'price' => $product->price,
+                    'image' => $product->image,
                     'pocet' => 1
                 ];
             }
@@ -74,24 +75,55 @@ public function removeItem($itemId)
     }
 }
 
-public function updateQuantity(Request $request, $itemId)
+public function update(Request $request, $itemId)
 {
     if (Auth::check()) {
+        // Pre prihlásených používateľov
         $cartItem = CartItem::find($itemId);
+
         if ($cartItem) {
-            $cartItem->pocet = $request->input('quantity');
+            if ($request->action == 'decrease' && $cartItem->pocet > 1) {
+                $cartItem->decrement('pocet');
+            }
+
+            if ($request->action == 'increase') {
+                $cartItem->increment('pocet');
+            }
+
+            if ($request->has('pocet')) {
+                $cartItem->pocet = $request->input('pocet');
+            }
+
             $cartItem->save();
-            return redirect()->route('cart.show')->with('success', 'Množstvo bolo aktualizované.');
+
+            return back()->with('success', 'Množstvo bolo upravené!');
         }
     } else {
+        // Pre neprihlásených používateľov (session-based)
         $cart = session()->get('cart', []);
+
         if (isset($cart[$itemId])) {
-            $cart[$itemId]['pocet'] = $request->input('quantity');
+            if ($request->action == 'decrease' && $cart[$itemId]['pocet'] > 1) {
+                $cart[$itemId]['pocet']--;
+            }
+
+            if ($request->action == 'increase') {
+                $cart[$itemId]['pocet']++;
+            }
+
+            if ($request->has('pocet')) {
+                $cart[$itemId]['pocet'] = $request->input('pocet');
+            }
+
             session()->put('cart', $cart);
+
+            return back()->with('success', 'Množstvo bolo upravené!');
         }
-        return redirect()->route('cart.show')->with('success', 'Množstvo bolo aktualizované.');
     }
-    return redirect()->route('cart.show')->with('error', 'Nastala chyba.');
+
+    return back()->with('error', 'Niečo sa pokazilo!');
 }
+
+
 
 }

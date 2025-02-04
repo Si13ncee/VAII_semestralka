@@ -25,7 +25,6 @@ class ReviewController extends Controller
     $review->rating = $request->rating;
     $review->save();
 
-    // Aktualizácia ratingu a rating_count produktu
     $this->updateProductRating($productId);
 
     return redirect()->route('showProduct', $productId)->with('success', 'Recenzia bola pridaná!');
@@ -33,31 +32,24 @@ class ReviewController extends Controller
 
 public function updateProductRating($productId)
 {
-    // Získanie všetkých recenzií pre daný produkt
     $reviews = Review::where('product_id', $productId)->get();
-
-    // Vypočítanie priemerného hodnotenia
     $averageRating = $reviews->avg('rating');
-
-    // Počet recenzií
     $ratingCount = $reviews->count();
-
-    // Aktualizácia ratingu a rating_count produktu
     $product = Product::find($productId);
-    $product->rating = round($averageRating, 1); // Zaokrúhlenie na 1 desatinné miesto
+    $product->rating = round($averageRating, 1);
     $product->rating_count = $ratingCount;
     $product->save();
 }
     
 public function loadReviews(Request $request, $productId)
 {
-    $page = $request->page ?: 1;  // Získajte aktuálnu stránku
+    $page = $request->page ?: 1;
     $reviewsPerPage = 4;  // Počet recenzií na jednu stránku
 
     $reviews = Review::where('product_id', $productId)
-                     ->orderBy('created_at', 'desc')  // Zoradiť podľa dátumu
-                     ->skip(($page - 1) * $reviewsPerPage)  // Preskočiť predchádzajúce recenzie
-                     ->take($reviewsPerPage)  // Zobraziť iba požadovaný počet recenzií
+                     ->orderBy('created_at', 'desc')
+                     ->skip(($page - 1) * $reviewsPerPage)
+                     ->take($reviewsPerPage)
                      ->get();
 
     return response()->json($reviews);
