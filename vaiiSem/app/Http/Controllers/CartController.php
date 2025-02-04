@@ -55,6 +55,43 @@ class CartController extends Controller
     return view('cart', compact('cartItems'));
 }
 
+public function removeItem($itemId)
+{
+    if (Auth::check()) {
+        $cartItem = CartItem::find($itemId);
+        if ($cartItem) {
+            $cartItem->delete();
+            return redirect()->route('cart.show')->with('success', 'Položka bola odstránená z košíka.');
+        }
+        return redirect()->route('cart.show')->with('error', 'Položka sa nenašla.');
+    } else {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$itemId])) {
+            unset($cart[$itemId]);
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('cart.show')->with('success', 'Položka bola odstránená z košíka.');
+    }
+}
 
+public function updateQuantity(Request $request, $itemId)
+{
+    if (Auth::check()) {
+        $cartItem = CartItem::find($itemId);
+        if ($cartItem) {
+            $cartItem->pocet = $request->input('quantity');
+            $cartItem->save();
+            return redirect()->route('cart.show')->with('success', 'Množstvo bolo aktualizované.');
+        }
+    } else {
+        $cart = session()->get('cart', []);
+        if (isset($cart[$itemId])) {
+            $cart[$itemId]['pocet'] = $request->input('quantity');
+            session()->put('cart', $cart);
+        }
+        return redirect()->route('cart.show')->with('success', 'Množstvo bolo aktualizované.');
+    }
+    return redirect()->route('cart.show')->with('error', 'Nastala chyba.');
+}
 
 }
