@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Psy\Readline\Hoa\Console;
 
 class CartController extends Controller
 {
@@ -77,25 +78,26 @@ public function removeItem($itemId)
 
 public function update(Request $request, $itemId)
 {
+
     if (Auth::check()) {
         // Pre prihlásených používateľov
         $cartItem = CartItem::find($itemId);
 
         if ($cartItem) {
-            if ($request->action == 'decrease' && $cartItem->pocet > 1) {
-                $cartItem->decrement('pocet');
-            }
-
-            if ($request->action == 'increase') {
-                $cartItem->increment('pocet');
-            }
-
             if ($request->has('pocet')) {
                 $cartItem->pocet = $request->input('pocet');
             }
 
-            $cartItem->save();
+            if ($request->action == 'decrease' && $cartItem->pocet > 1) {
+                $cartItem->pocet = $cartItem->pocet - 1;    
+            }
 
+            if ($request->action == 'increase') {
+                $cartItem->pocet = $cartItem->pocet + 1;
+            }
+
+        
+            $cartItem->save();
             return back()->with('success', 'Množstvo bolo upravené!');
         }
     } else {
@@ -105,6 +107,7 @@ public function update(Request $request, $itemId)
         if (isset($cart[$itemId])) {
             if ($request->action == 'decrease' && $cart[$itemId]['pocet'] > 1) {
                 $cart[$itemId]['pocet']--;
+               
             }
 
             if ($request->action == 'increase') {
@@ -117,10 +120,14 @@ public function update(Request $request, $itemId)
 
             session()->put('cart', $cart);
 
+
+            \Log::info('Akcia: ' . $request->action);
+            \Log::info('Množstvo: ' . $cart[$itemId]['pocet']);
             return back()->with('success', 'Množstvo bolo upravené!');
         }
     }
 
+    
     return back()->with('error', 'Niečo sa pokazilo!');
 }
 

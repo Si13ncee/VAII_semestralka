@@ -15,7 +15,6 @@
                         <h5 class="card-title">{{ $item->product->name }}</h5>
                         <p class="card-text">Cena: {{ $item->product->price }} €</p>
                         
-                        <!-- Formulár pre aktualizáciu množstva -->
                         <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('PUT')
@@ -68,12 +67,12 @@
             </div>
         @endforeach
     @endif
-    <div class="text-center mt-4 mb-4">
-        <a href="{{ route('checkout.address') }}" class="btn btn-primary bg-dark">Pokračovať k fakturačnej adrese</a>
-    </div>
 
+    @if(count($cartItems) > 0)
+        <div class="text-center mt-4 mb-4">
+            <a href="{{ route('checkout.address') }}" class="btn btn-primary bg-dark">Pokračovať k fakturačnej adrese</a>
+        </div>
+    @endif
 </div>
-
-
 
 @endsection
