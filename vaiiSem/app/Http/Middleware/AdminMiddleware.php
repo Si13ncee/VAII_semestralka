@@ -19,7 +19,7 @@ class AdminMiddleware
     {
          if(Auth::check())
             {
-                if(Auth::user()->permissions == '1')
+                if(Auth::user()->permissions == '1' ||Auth::user()->permissions == '2')
                 {
                     return $next($request);
                 }
