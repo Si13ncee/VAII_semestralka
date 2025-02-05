@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\OrderItem;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -25,8 +26,9 @@ class CheckoutController extends Controller
         'phone_number' => $request->phone_number,
         'total_price' => $this->calculateTotalPrice(), 
         'status' => 'pending',
+       
     ]);
-
+    $order->user_id = Auth::check() ? Auth::id() : null;
 
     foreach (session('cart', []) as $item) { 
         OrderItem::create([

@@ -15,7 +15,9 @@
     color: black; /* Set the text color to black */
   }
 
-  
+  .bg-green {
+    background-color: #32CD32;
+  }
 
   .card .card-body {
     flex-grow: 1; /* Allow the body to grow within the flex container */

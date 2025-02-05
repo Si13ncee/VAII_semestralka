@@ -24,9 +24,9 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link{{ Request::is('customers') ? ' active' : '' }}" aria-current="page">
-                <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-                Customers
+            <a href="{{ url('orders') }}" class="nav-link{{ Request::is('orders') ? ' active' : '' }} nav-link{{ Request::is('*viewOrder*') ? ' active' : '' }}" aria-current="page">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                Orders
             </a>
         </li>
     </ul>

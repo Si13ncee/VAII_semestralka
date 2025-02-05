@@ -39,6 +39,11 @@ Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Control
  Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index'])->name('dashboard');
     Route::get('products', 'App\Http\Controllers\Admin\ProductController@index');
+
+    Route::get('orders', 'App\Http\Controllers\OrderAdminController@index');
+    Route::get('viewOrder/{id}', 'App\Http\Controllers\OrderAdminController@viewOrder');
+    Route::get('completeOrder/{id}', 'App\Http\Controllers\OrderAdminController@completeOrder');
+
     Route::get('add-product', 'App\Http\Controllers\Admin\ProductController@add');
     Route::post('insert-product','App\Http\Controllers\Admin\ProductController@insert');
     Route::get('edit-product/{id}', [App\Http\Controllers\Admin\ProductController::class,'edit']);
