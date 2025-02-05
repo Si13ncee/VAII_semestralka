@@ -44,6 +44,11 @@ Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Control
     Route::get('viewOrder/{id}', 'App\Http\Controllers\OrderAdminController@viewOrder');
     Route::get('completeOrder/{id}', 'App\Http\Controllers\OrderAdminController@completeOrder');
 
+
+    Route::get('categories', 'App\Http\Controllers\CategoryController@index');
+    Route::get('newCategory', 'App\Http\Controllers\CategoryController@routeToAdd');
+    Route::post('addNewCategory', 'App\Http\Controllers\CategoryController@insert');
+
     Route::get('add-product', 'App\Http\Controllers\Admin\ProductController@add');
     Route::post('insert-product','App\Http\Controllers\Admin\ProductController@insert');
     Route::get('edit-product/{id}', [App\Http\Controllers\Admin\ProductController::class,'edit']);

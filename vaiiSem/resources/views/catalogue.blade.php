@@ -32,16 +32,37 @@
   </header>
   
 <div class="container mt-4 text-center">
-  <form class="search-form form-inline justify-content-center d-flex">
-      <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <select id="sort-select" class="form-select ml-2 custom-dropdown">
-          <option value="price_asc">Cena (od najnižšej)</option>
-          <option value="price_desc">Cena (od najvyššej)</option>
-          <option value="rating_desc">Hodnotenie (najlepšie)</option>
-          <option value="rating_asc">Hodnotenie (najhoršie)</option>
-      </select>
-
-      <button class="btn btn-outline-primary my-2 my-sm-0 custom-btn-outline ml-2" type="submit">Search</button>
+  <form class="search-form form-inline justify-content-center">
+    <div class="row">
+        <div class="col">
+            <input id="search-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <div class="col-md-auto">
+            <select id="sort-select" class="form-select ml-2 custom-dropdown">
+                <option value="price_asc">Cena (od najnižšej)</option>
+                <option value="price_desc">Cena (od najvyššej)</option>
+                <option value="rating_desc">Hodnotenie (najlepšie)</option>
+                <option value="rating_asc">Hodnotenie (najhoršie)</option>
+            </select>
+        </div>
+        <div class="col-md-auto">
+            <button class="btn btn-outline-primary my-2 my-sm-0 custom-btn-outline ml-2" type="submit">Search</button>
+        </div>
+    </div>
+    <div class="row">   
+        <div class="d-flex flex-wrap mt-3">
+            @foreach ($categories as $category)
+                <div class="d-flex align-items-center me-3">
+                    <label class="btn btn-primary me-2 mb-0 bg-dark" for="category{{ $category->id }}">
+                        {{ $category->name }}
+                    </label>
+                    <input type="checkbox" name="categories[]" value="{{ $category->id }}" 
+                        class="form-check-input mt-0" 
+                        id="category{{ $category->id }}">
+                </div>
+            @endforeach
+        </div>
+    </div>
   </form>
 </div>
     
@@ -67,10 +88,13 @@
     let loading = false;
     let hasMoreData = true;
     let sortBy = $("#sort-select").val();
+    let selectedCategories = [];
+
 
     function truncateText(text, maxLength) {
         return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
     }
+
 
     function loadProducts() {
         if (!hasMoreData || loading) return;
@@ -79,7 +103,12 @@
         $.ajax({
             url: "/search",
             type: "GET",
-            data: { query: searchQuery, page: page, sortBy: sortBy },
+            data: { 
+                query: searchQuery, 
+                categories: selectedCategories, 
+                page: page, 
+                sortBy: sortBy 
+            },
             dataType: "json",
             success: function (response) {
                 if (response.data.length > 0) {
@@ -120,24 +149,28 @@
         });
     }
 
-    // Vyhľadávanie
     $(".search-form").submit(function (event) {
         event.preventDefault();
+        
         searchQuery = $("#search-input").val();
         page = 1;
         hasMoreData = true;
+
+        selectedCategories = [];
+        $("input[name='categories[]']:checked").each(function() {
+            selectedCategories.push($(this).val());
+        });
+
         $("#product-list").html(""); 
         loadProducts();
     });
 
-    // Posunom na spodok sa načítajú ďalšie produkty
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
             loadProducts();
         }
     });
 
-    // Zmena triedenia (sortovania)
     $("#sort-select").change(function () {
         sortBy = $(this).val();
         page = 1;
@@ -146,6 +179,7 @@
         loadProducts();
     });
 });
+
 </script>
 
 

@@ -29,6 +29,12 @@
                 Orders
             </a>
         </li>
+        <li>
+            <a href="{{ url('categories') }}" class="nav-link{{ Request::is('categories') ? ' active' : '' }} nav-link{{ Request::is('*viewCategory*') ? ' active' : '' }}" aria-current="page">
+                <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                Categories
+            </a>
+        </li>
     </ul>
     <hr>
 </div>

@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Review;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -41,7 +43,8 @@ class ProductController extends Controller
     public function edit($id) {
 
         $product = Product::find($id);
-        return view("layouts.admin.product.edit", compact('product'));
+        $categories = Category::all();
+        return view("layouts.admin.product.edit", compact('product', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -80,6 +83,7 @@ class ProductController extends Controller
     $product->name = $request->input('name');
     $product->description = $request->input('description');
     $product->price = $request->input('price');
+    $product->categories()->sync($request->categories ?? []);
     $product->update();
 
     $product->slug = $product->id;
@@ -105,39 +109,51 @@ class ProductController extends Controller
 
 
     public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $page = $request->input('page', 1);
-        $sortBy = $request->input('sortBy', 'price_asc');
+{
+    $query = $request->input('query');
+    $categories = $request->input('categories', []);
+    $page = $request->input('page', 1);
+    $sortBy = $request->input('sortBy', 'price_asc');
     
+    $productsQuery = Product::query()
+        ->where(function ($queryBuilder) use ($query) {
+            $queryBuilder->where('name', 'LIKE', "%{$query}%")
+                         ->orWhere('description', 'LIKE', "%{$query}%");
+        })
+        ->when(!empty($categories), function ($queryBuilder) use ($categories) {
+            $queryBuilder->whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('category_product.category_id', $categories); 
+            });
+        })
+        ->when($sortBy, function ($queryBuilder) use ($sortBy) {
+            switch ($sortBy) {
+                case 'price_asc':
+                    $queryBuilder->orderBy('price', 'asc');
+                    break;
+                case 'price_desc':
+                    $queryBuilder->orderBy('price', 'desc');
+                    break;
+                case 'rating_asc':
+                    $queryBuilder->orderBy('rating', 'asc');
+                    break;
+                case 'rating_desc':
+                    $queryBuilder->orderBy('rating', 'desc');
+                    break;
+                default:
+                    $queryBuilder->orderBy('price', 'asc');
+                    break;
+            }
+        });
+
+
+
+    $products = $productsQuery->paginate(6);
+
+    // Posielať odpoveď vo formáte JSON
+    return response()->json($products);
+}
+
     
-        $products = Product::query()
-            ->where('name', 'LIKE', "%{$query}%")
-            ->orWhere('description', 'LIKE', "%{$query}%")
-            ->when($sortBy, function ($queryBuilder) use ($sortBy) {
-                switch ($sortBy) {
-                    case 'price_asc':
-                        $queryBuilder->orderBy('price', 'asc');
-                        break;
-                    case 'price_desc':
-                        $queryBuilder->orderBy('price', 'desc');
-                        break;
-                    case 'rating_asc':
-                        $queryBuilder->orderBy('rating', 'asc');
-                        break;
-                    case 'rating_desc':
-                        $queryBuilder->orderBy('rating', 'desc');
-                        break;
-                    default:
-                        $queryBuilder->orderBy('price', 'asc');
-                        break;
-                }
-            })
-            ->paginate(6); // počet produktov zobrazených naraz
-    
-        // Posielať odpoveď vo formáte JSON
-        return response()->json($products);
-    }
     
 
     public function show($id)
@@ -148,23 +164,30 @@ class ProductController extends Controller
     }
 
     public function storeReview(Request $request, $productId)
-{
-    $request->validate([
-        'author' => 'required|string|max:255',
-        'review' => 'required|string|max:1000',
-        'rating' => 'required|integer|between:1,5',
-    ]);
+    {
+        $request->validate([
+            'author' => 'required|string|max:255',
+            'review' => 'required|string|max:1000',
+            'rating' => 'required|integer|between:1,5',
+        ]);
 
-    $review = new Review();
-    $review->product_id = $productId;
-    $review->author = $request->author;
-    $review->review = $request->review;
-    $review->rating = $request->rating;
-    $review->save();
+        $review = new Review();
+        $review->product_id = $productId;
+        $review->author = $request->author;
+        $review->review = $request->review;
+        $review->rating = $request->rating;
+        $review->save();
 
-    return redirect()->route('product.show', $productId)->with('success', 'Recenzia bola pridaná.');
-}
+        return redirect()->route('product.show', $productId)->with('success', 'Recenzia bola pridaná.');
+    }
 
-    
+
+    public function attachCategory($productId, $categoryId) {
+        $product = Product::find($productId);
+        $product->categories()->attach([$categoryId]);
+        return redirect('edit-product/' . $productId);
+    }
+
+
 
 }

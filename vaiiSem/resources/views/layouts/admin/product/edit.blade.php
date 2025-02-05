@@ -3,7 +3,7 @@
 @section('content')
 <div class="px-5">
     <div class="col py-2">
-        <div class="card nonhoverable-card">
+        <div class="card no-hover no-transition mt-3">
             <div class="card-header">
                 Edit Product
             </div>
@@ -21,19 +21,17 @@
                             <input type="text" id="price" value="{{ $product->price }}" class="form-control" name="price" required>
                             <small id="price-error" class="text-danger"></small>
                         </div>
-
                         <div class="col-md-12">
                             <label for="description">Description</label>
                             <textarea id="description" name="description" cols="30" rows="5" class="form-control" required>{{ $product->description }}</textarea>
                             <small id="description-error" class="text-danger"></small>
-                        </div>
-                        
-                        <div class="col-md-12">
+                        </div>                        
+                        <div class="col-md-12 mt-3">
                             @if($product->image)
                                 <div class="mb-2">
                                     <img src="{{ asset('ProductImages/uploads/products/'.$product->image) }}" alt="Product Image" class="img-thumbnail mb-2">
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check ">
                                     <input type="checkbox" class="form-check-input" id="delete-image" name="delete_image">
                                     <label class="form-check-label" for="delete-image">Delete current image</label>
                                 </div>
@@ -44,8 +42,26 @@
                             <input type="file" id="image" name="image" class="form-control" accept="image/*">
                             <small id="image-error" class="text-danger"></small>
                         </div>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+
+
+                        <div class="d-flex flex-wrap mt-3">
+                            @foreach ($categories as $category)
+                                <div class="d-flex align-items-center me-3">
+                                    <label class="btn btn-primary me-2 mb-0 bg-dark" for="category{{ $category->id }}">
+                                        {{ $category->name }}
+                                    </label>
+                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}" 
+                                        class="form-check-input mt-0" 
+                                        id="category{{ $category->id }}"
+                                        {{ in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                </div>
+                            @endforeach
+                        </div>
+                        
+
+
+                        <div class="col-md-12 mt-3">
+                            <button type="submit" class="btn btn-primary bg-green">Submit</button>
                         </div>
                     </div>
                 </form>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="px-5">
     <div class="col py-2">
-        <div class="card">
+        <div class="card no-hover no-transition mt-3">
             <div class="card-header">
                 Add Product
             </div>
