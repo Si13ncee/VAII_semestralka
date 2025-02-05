@@ -48,6 +48,10 @@ Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Control
     Route::get('categories', 'App\Http\Controllers\CategoryController@index');
     Route::get('newCategory', 'App\Http\Controllers\CategoryController@routeToAdd');
     Route::post('addNewCategory', 'App\Http\Controllers\CategoryController@insert');
+    Route::get('editCategory/{id}', 'App\Http\Controllers\CategoryController@edit');
+    Route::put('update-Category/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
+
+
 
     Route::get('add-product', 'App\Http\Controllers\Admin\ProductController@add');
     Route::post('insert-product','App\Http\Controllers\Admin\ProductController@insert');

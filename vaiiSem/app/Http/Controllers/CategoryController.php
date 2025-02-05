@@ -25,4 +25,25 @@ class CategoryController extends Controller
         return view('layouts.admin.category.add');
     }
 
+    public function edit($id) {
+        $category = Category::find($id);
+        return view("layouts.admin.category.edit", compact('category'));
+        
+    }
+
+    public function update(Request $request, $id) {
+        $category = Category::find($id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+        
+        $category->name = $request->name;
+        $category->update();
+
+        return redirect('categories')->with('success', 'Product updated successfully!');
+        
+    }
+
+
+
 }
