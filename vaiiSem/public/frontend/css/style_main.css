@@ -143,3 +143,17 @@
   padding: 20px;
   border-radius: 8px;
 }
+
+html, body {
+  height: 100%;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
