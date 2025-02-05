@@ -36,8 +36,7 @@
                                     @endif
                                     @if ($order->status == 'cancelled')
                                         <td><i class="bi bi-x-square-fill"></i></td>                         
-                                    @endif
-                                    
+                                    @endif                                    
                                 </tr>
                             @endforeach
 
