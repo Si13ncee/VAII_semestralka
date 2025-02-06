@@ -88,18 +88,17 @@
         const priceInput = document.getElementById('price');
         const priceValue = priceInput.value.trim();
 
-        // Skontrolujeme, či je cena prázdna
+        
         if (priceValue === '') {
             valid = false;
             document.getElementById('price-error').textContent = 'Price is required.';
         }
-        // Skontrolujeme, či je cena číslo a či je väčšia ako 0
+
         else if (isNaN(priceValue) || parseFloat(priceValue) <= 0) {
             valid = false;
             document.getElementById('price-error').textContent = 'Please enter a valid price greater than 0.';
         } else {
-            // Cena je platná
-            document.getElementById('price-error').textContent = '';  // Vymažeme chybu
+            document.getElementById('price-error').textContent = '';
         }
 
         // Validate Description

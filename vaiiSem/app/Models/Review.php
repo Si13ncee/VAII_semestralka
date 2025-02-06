@@ -15,7 +15,7 @@ class Review extends Model
         'rating'
     ];
 
-    // Definovanie vzťahu "recenzia patrí produktu"
+
     public function product()
     {
         return $this->belongsTo(Product::class);

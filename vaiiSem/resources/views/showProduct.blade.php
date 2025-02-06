@@ -20,6 +20,7 @@
             
         </div>
     </div>
+
     <!-- Formulár na pridanie recenzie len pre prihlásených -->
     @auth
     <div class="container mt-4">
@@ -47,6 +48,7 @@
                 <button type="submit" class="btn btn-primary mt-2 mb-2 bg-dark">Pridať recenziu</button>
             </form>
             @endauth
+
             <!-- Ak nie je prihlásený používateľ -->
             @guest
             <p>## Pre pridanie recenzie sa musíte prihlásiť ##</p>
@@ -56,7 +58,7 @@
     
     <div class="container mt-4">
         <div class="row" id="reviews-list">
-            <!-- Recenzie sa načítajú sem pomocou AJAX -->
+            <!-- Recenzie sa načítajú sem pomocou AJAX-u -->
         </div>
         <div id="loading" class="text-center" style="display: none;">
             <p>Načítavam...</p>

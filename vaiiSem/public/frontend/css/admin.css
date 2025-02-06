@@ -1,24 +1,22 @@
-/* New styles for the pulsating effect */
-
   .cardNT {
-    z-index: 1; /* default z-index */
+    z-index: 1;
     height: 100%;
     text-decoration: none;
-    color: black; /* Set the text color to black */
+    color: black;
     flex-grow: 1;
   }
   .card {
-    transition: transform 0.3s; /* adds a smooth transition */
-    z-index: 1; /* default z-index */
+    transition: transform 0.3s;
+    z-index: 1;
     height: 100%;
     text-decoration: none;
-    color: black; /* Set the text color to black */
+    color: black;
   }
 
 
 
   .card .card-body {
-    flex-grow: 1; /* Allow the body to grow within the flex container */
+    flex-grow: 1;
   }
   
   footer {
@@ -27,7 +25,7 @@
   }
 
   .noDeco {
-    text-decoration: none; /* Remove default underline on links */
+    text-decoration: none;
   }
   
   body {
@@ -54,7 +52,7 @@
   }
 
  .mb-4 {
-    margin-bottom: 1.5rem !important; /* Adjust the spacing between rows */
+    margin-bottom: 1.5rem !important;
   } 
 
   .header-bg {
@@ -83,24 +81,24 @@
   .custom-btn-outline:hover {
     border-color: #000;
     background-color: grey;
-    color: #fff; /* Optional: Set text color to black */
+    color: #fff;
   }
 
   .custom-btn-outline {
     background-color: #000;
     border-color: #000;
-    color: #fff; /* Text color on hover */
+    color: #fff;
   }
- /* Adjustments for the sidebar */
+
 .sidebar {
   height: 100vh;
   position: sticky;
   top: 0;
 }
 
-/* Adjust page content to allow space for sidebar */
+
   .col-md-9,.col-lg-10 {
-    margin-left: 15rem; /* Adjust based on the sidebar width */
+    margin-left: 15rem;
   }
 
   .sidebar {

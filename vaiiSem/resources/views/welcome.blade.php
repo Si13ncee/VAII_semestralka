@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech H4ven</title>
-  
-  <!-- Bootstrap CSS -->
-  <!-- Styles -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link href="frontend/css/style_main.css" rel="stylesheet">
@@ -18,7 +15,7 @@
         @include('layouts.siteParts.navbar')
     </div>  
 
-  <!-- Header -->
+  
   <header class="jumbotron jumbotron-fluid header-bg">
     <div class="container text-center ">
       <h4>Welcome to</h4>
@@ -30,11 +27,11 @@
     </div>
   </header>
 
-  <!-- Product Categories -->
+  
   <main class="container mt-4">
     <h2>Explore Our Categories</h2>
 
-    <!-- 1st row of cards -->
+    
     <div class="row">
 
       <div class="col-md-4 mb-4">
@@ -65,7 +62,7 @@
       </div>
     </div>
 
-    <!-- 2nd row of cards -->
+ 
     <div class="row">
       <div class="col-md-4 mb-4">
         <a href="{{ url('/catalogue') }}" class="card d-flex flex-column justify-content-between">

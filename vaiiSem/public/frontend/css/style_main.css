@@ -1,13 +1,13 @@
-/* New styles for the pulsating effect */
+
 @keyframes pulse {
     0% {
-      background-color: #ececec; /* Initial color */
+      background-color: #ececec;
     }
     50% {
-      background-color: #dadada; /* Intermediate color */
+      background-color: #dadada;
     }
     100% {
-      background-color: #ececec; /* Return to initial color */
+      background-color: #ececec;
     }
   }
 

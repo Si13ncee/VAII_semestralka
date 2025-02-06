@@ -7,7 +7,7 @@
     <form action="{{ route('checkout.review') }}" method="POST">
         @csrf
         
-        <!-- Meno -->
+        
         <div class="mb-3 card">
             <div class="mt-3 ms-3 me-3">
                 <label for="name" class="form-label">Meno</label>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <!-- Email -->
+        
         <div class="mb-3 card">
             <div class="mt-3 ms-3 me-3">
                 <label for="email" class="form-label">Email</label>
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <!-- Adresa -->
+       
         <div class="mb-3 card">
             <div class="mt-3 ms-3 me-3">
                 <label for="address" class="form-label">Adresa</label>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <!-- Mesto -->
+        
         <div class="mb-3 card">
             <div class="mt-3 ms-3 me-3">
                 <label for="city" class="form-label">Mesto</label>
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <!-- PSČ -->
+        
         <div class="mb-3 card">
             <div class="mt-3 ms-3 me-3">
                 <label for="postal_code" class="form-label">PSČ</label>
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <!-- Telefónne číslo -->
+       
         <div class="mb-3 card">
             <div class="mt-3 ms-3 me-3">
                 <label for="phone_number" class="form-label">Telefónne číslo</label>
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <!-- Tlačítko na pokračovanie -->
+        
         <div class="d-flex mb-3 justify-content-center"><button type="submit" class="btn btn-primary bg-dark">Dokončiť Objednávku</button></div>
     </form>
 </div>

@@ -159,7 +159,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::findOrFail($id);
-        $reviews = $product->reviews; // Získanie recenzií pre tento produkt
+        $reviews = $product->reviews;
         return view('showProduct', compact('product', 'reviews'));
     }
 

@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     public function isAdmin() {
-        // Assuming you have a column named 'role' in your users table
+        
         return $this->permissions === 1 || $this->permissions === 2;
     }
 

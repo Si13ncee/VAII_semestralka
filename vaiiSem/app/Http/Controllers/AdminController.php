@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('layouts.admin.index'); // Return the admin dashboard view
+        return view('layouts.admin.index');
     }
 
 
