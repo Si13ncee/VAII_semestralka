@@ -18,16 +18,16 @@ class CheckoutController extends Controller
 
     public function review(Request $request)
     {
-        // Ak je používateľ prihlásený, použijeme údaje z databázy.
+        
         if (Auth::check()) {
-            // Získame položky košíka prihláseného používateľa
+            
             $cartItems = CartItem::where('user_id', Auth::id())->get();
         } else {
-            // Ak nie je prihlásený, použijeme položky zo session
+            
             $cartItems = session('cart', []);
         }
     
-        // Vytvorenie objednávky
+
         $order = Order::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -39,32 +39,40 @@ class CheckoutController extends Controller
             'status' => 'pending',
         ]);
     
-        // Nastavenie user_id pre prihláseného používateľa
         $order->user_id = Auth::check() ? Auth::id() : null;
-        $order->save(); // Nezabudnite uložiť objednávku do databázy
+        $order->save();
 
         
         foreach ($cartItems as $item) {
-            $productName = Product::find($item->product_id)->name;
-            $price = Product::find($item->product_id)->price;
+            if (Auth::check()) {
+                $product = Product::find($item->product_id);
+                $productName = $product->name;
+                $price = $product->price;
+                $quantity = $item->quantity; 
+            } else {
+
+                $productName = $item['name'];
+                $price = $item['price'];
+                $quantity = $item['pocet'];
+            }
+            
             
             OrderItem::create([
                 'order_id' => $order->id,
-                'product_name' => $productName, // Ak je z databázy, inak zo session
+                'product_name' => $productName, 
                 'price' => $price,
                 'quantity' => $item['pocet'],
             ]);
         }
     
-        // Ak je používateľ prihlásený, môžeme odstrániť položky z databázy
         if (Auth::check()) {
-            CartItem::where('user_id', Auth::id())->delete(); // Vymažte položky po vytvorení objednávky
+            CartItem::where('user_id', Auth::id())->delete();
         } else {
-            // Ak je používateľ neprihlásený, vymažeme položky zo session
+           
             session()->forget('cart');
         }
     
-        // Presmerujeme používateľa na katalog alebo iné miesto
+
         return redirect()->route('catalogue');
     }
     

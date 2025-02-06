@@ -26,7 +26,7 @@
       <br>
       <p>Looking to buy the newest technology?</p>
       <p>Don't worry, you need to look no further!</p>
-      <a class="btn btn-primary bg-dark"  href="catalogue.html">Browse Catalogue</a>
+      <a class="btn btn-primary bg-dark"  href="{{ url('/catalogue') }}">Browse Catalogue</a>
     </div>
   </header>
 
@@ -38,7 +38,7 @@
     <div class="row">
 
       <div class="col-md-4 mb-4">
-        <a href="#" class="card d-flex flex-column justify-content-between">
+        <a href="{{ url('/catalogue') }}" class="card d-flex flex-column justify-content-between">
           <div class="card-body">
             <h5 class="card-title">Smartphones</h5>
             <p class="card-text">Explore the newest products from our Smarthphone category.</p>
@@ -47,7 +47,7 @@
       </div>
 
       <div class="col-md-4 mb-4">
-        <a href="#" class="card d-flex flex-column justify-content-between">
+        <a href="{{ url('/catalogue') }}" class="card d-flex flex-column justify-content-between">
           <div class="card-body">
             <h5 class="card-title">Computers</h5>
             <p class="card-text">Take a look through the most powerful pieces that we have to offer!</p>
@@ -56,7 +56,7 @@
       </div>
 
       <div class="col-md-4 mb-4">
-        <a href="#" class="card d-flex flex-column justify-content-between">
+        <a href="{{ url('/catalogue') }}" class="card d-flex flex-column justify-content-between">
           <div class="card-body">
             <h5 class="card-title">Computer Accessories</h5>
             <p class="card-text">Find accessories for your devices.</p>
@@ -68,7 +68,7 @@
     <!-- 2nd row of cards -->
     <div class="row">
       <div class="col-md-4 mb-4">
-        <a href="#" class="card d-flex flex-column justify-content-between">
+        <a href="{{ url('/catalogue') }}" class="card d-flex flex-column justify-content-between">
           <div class="card-body">
             <h5 class="card-title">Accessories</h5>
             <p class="card-text">Find accessories for your devices.</p>
@@ -77,7 +77,7 @@
       </div>
 
       <div class="col-md-4 mb-4">
-        <a href="#" class="card d-flex flex-column justify-content-between">
+        <a href="{{ url('/catalogue') }}" class="card d-flex flex-column justify-content-between">
           <div class="card-body">
             <h5 class="card-title">Accessories</h5>
             <p class="card-text">Find accessories for your devices.</p>

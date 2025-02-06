@@ -105,6 +105,10 @@ public function update(Request $request, $itemId)
         $cart = session()->get('cart', []);
 
         if (isset($cart[$itemId])) {
+            if ($request->has('pocet')) {
+                $cart[$itemId]['pocet'] = $request->input('pocet');
+            }
+            
             if ($request->action == 'decrease' && $cart[$itemId]['pocet'] > 1) {
                 $cart[$itemId]['pocet']--;
                
@@ -114,9 +118,7 @@ public function update(Request $request, $itemId)
                 $cart[$itemId]['pocet']++;
             }
 
-            if ($request->has('pocet')) {
-                $cart[$itemId]['pocet'] = $request->input('pocet');
-            }
+            
 
             session()->put('cart', $cart);
 

@@ -27,7 +27,7 @@
       <br>
       <p>Looking to buy the newest technology?</p>
       <p>Don't worry, you need to look no further!</p>
-      <a class="btn btn-primary bg-dark"  href="catalogue.html">Browse Catalogue</a>
+      <a class="btn btn-primary bg-dark"  href="{{ url('/catalogue') }}">Browse Catalogue</a>
     </div>
   </header>
   
