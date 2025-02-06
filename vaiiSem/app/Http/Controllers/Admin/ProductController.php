@@ -144,9 +144,6 @@ class ProductController extends Controller
                     break;
             }
         });
-
-
-
     $products = $productsQuery->paginate(6);
 
     // Posielať odpoveď vo formáte JSON

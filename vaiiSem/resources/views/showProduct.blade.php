@@ -14,7 +14,7 @@
             
             <form action="{{ route('cart.add', $product->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary">Pridať do košíka</button>
+                <button type="submit" class="btn btn-primary bg-dark">Pridať do košíka</button>
             </form>
             
             

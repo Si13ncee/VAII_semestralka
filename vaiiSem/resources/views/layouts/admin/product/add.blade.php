@@ -32,7 +32,7 @@
                             <small id="image-error" class="text-danger"></small>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary bg-green mt-3">Submit</button>
                         </div>
                     </div>
                 </form>

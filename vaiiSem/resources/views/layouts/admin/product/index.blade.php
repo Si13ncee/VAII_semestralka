@@ -31,8 +31,8 @@
                                     </td>
                                     <td>{{ $item->price }}</td>
                                     <td>
-                                        <a href="{{ url('edit-product/' . $item->id ) }}" class=" btn btn-primary"> Edit </a>
-                                        <a href="{{ route('deleteProduct', $item->id) }}" class="btn btn-primary"> Delete </a>  
+                                        <a href="{{ url('edit-product/' . $item->id ) }}" class=" btn btn-secondary mb-1"> Edit </a>
+                                        <a href="{{ route('deleteProduct', $item->id) }}" class="btn btn-danger"> Delete </a>  
                                     </td>
                                 </tr>
                             @endforeach

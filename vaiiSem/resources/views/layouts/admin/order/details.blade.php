@@ -13,6 +13,9 @@
                         <div class ="ml-4 mb-1">Meno: {{ $order->name }}</div>
                         <div class ="ml-4 mb-1">E-mail: {{ $order->email }}</div>
                         <div class ="ml-4 mb-1">Address: {{ $order->address }}</div>
+                        <div class ="ml-4 mb-1">City: {{ $order->city }}</div>
+                        <div class ="ml-4 mb-1">PSČ: {{ $order->postal_code }}</div>
+                        <div class ="ml-4 mb-1">Phone Number: {{ $order->phone_number }}</div>
                     </div>
                     </div>
                 
@@ -30,9 +33,9 @@
                             @foreach ($orderedItems as $item)
                                 <tr>
                                     <td>{{ $item->product_name }}</td>
-                                    <td>{{ $item->price }}</td>
+                                    <td>{{ $item->price }} €</td>
                                     <td>{{ $item->quantity }}</td>    
-                                    <td>{{ $item->price * $item->quantity }}</td>                                                                                                         
+                                    <td>{{ $item->price * $item->quantity }} €</td>                                                                                                         
                                 </tr>
                             @endforeach
                         </tbody>

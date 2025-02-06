@@ -28,9 +28,9 @@
                                     <td>{{ $order->name }}</td>
                                     <td>{{ $order->email }}</td>                                                        
                                     <td>{{ $order->address }}</td>
-                                    <td>{{ $orderedItems->where('order_id', $order->id)->count()}}</td>
+                                    <td>{{ $orderedItems->where('order_id', $order->id)->sum('quantity') }}</td>
                                     @if ($order->status == 'pending')
-                                        <td><a href="{{ route('cancelOrder', ['id' => $order->id]) }}" class=" btn btn-primary"> Zrušiť Objednávku </a></td>                                                            
+                                        <td><a href="{{ route('cancelOrder', ['id' => $order->id]) }}" class=" btn btn-danger"> Zrušiť Objednávku </a></td>                                                            
                                     @endif
                                     @if ($order->status == 'completed')
                                         <td><i class="bi bi-check-all"></i></td>                         
