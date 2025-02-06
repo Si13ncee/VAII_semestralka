@@ -51,4 +51,9 @@ class User extends Authenticatable
         // Assuming you have a column named 'role' in your users table
         return $this->permissions === 1 || $this->permissions === 2;
     }
+
+    public function orders()
+{
+    return $this->hasMany(Order::class);
+}
 }

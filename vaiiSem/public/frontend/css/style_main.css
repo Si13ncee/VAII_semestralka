@@ -102,7 +102,9 @@
     background-color: #c5c5c5;
   }
 
- 
+  .bg-green {
+    background-color: #32CD32;
+  }
 
   .custom-btn-outline:hover {
     border-color: #000;

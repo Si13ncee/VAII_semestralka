@@ -35,6 +35,8 @@ Route::post('/checkout/review', [App\Http\Controllers\CheckoutController::class,
 
 
 Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
+Route::middleware('auth')->get('myOrders','App\Http\Controllers\OrderAdminController@listOrders')->name('myOrders');
+Route::middleware('auth')->get('cancelOrder/{id}','App\Http\Controllers\OrderAdminController@cancelOrder')->name('cancelOrder');
 
  Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index'])->name('dashboard');
@@ -50,12 +52,12 @@ Route::middleware('auth')->post('/product/{productId}/review', [App\Http\Control
     Route::post('addNewCategory', 'App\Http\Controllers\CategoryController@insert');
     Route::get('editCategory/{id}', 'App\Http\Controllers\CategoryController@edit');
     Route::put('update-Category/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('updateCategory');
-
+    Route::get('delete-Category/{id}', [App\Http\Controllers\CategoryController::class, 'deleteCategory'])->name('deleteCategory');
 
 
     Route::get('add-product', 'App\Http\Controllers\Admin\ProductController@add');
     Route::post('insert-product','App\Http\Controllers\Admin\ProductController@insert');
     Route::get('edit-product/{id}', [App\Http\Controllers\Admin\ProductController::class,'edit']);
     Route::put('update-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('updateProduct');
-    Route::get('delete-category/{id}', [App\Http\Controllers\Admin\ProductController::class, 'deleteProduct'])->name('deleteProduct');
+    Route::get('delete-product/{id}', [App\Http\Controllers\Admin\ProductController::class, 'deleteProduct'])->name('deleteProduct');
 });

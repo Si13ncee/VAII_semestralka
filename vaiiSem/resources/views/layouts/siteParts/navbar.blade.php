@@ -41,7 +41,7 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">My profile</a></li>
+                            <li><a class="dropdown-item" href="{{ route('myOrders')}}">My Orders</a></li>
                             @if(Auth::user()->isAdmin())
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Admin Dashboard</a></li>
                             @endif
@@ -57,7 +57,7 @@
                     </li>
                 @endguest
 
-                <!-- Shopping Cart Button -->
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('cart.show') }}" style="position: relative;">
                         <i class="bi bi-cart fs-5"></i>

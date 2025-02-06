@@ -1,4 +1,4 @@
-@extends('layouts.adminPage')
+@extends('layouts.app')
 @section('content')
 
     <div class="px-5">
@@ -30,7 +30,7 @@
                                     <td>{{ $order->address }}</td>
                                     <td>{{ $orderedItems->where('order_id', $order->id)->count()}}</td>
                                     @if ($order->status == 'pending')
-                                        <td><a href="{{ url('viewOrder/' . $order->id ) }}" class=" btn btn-primary"> View Details </a></td>  
+                                        <td><a href="{{ route('cancelOrder', ['id' => $order->id]) }}" class=" btn btn-primary"> Zrušiť Objednávku </a></td>                                                            
                                     @endif
                                     @if ($order->status == 'completed')
                                         <td><i class="bi bi-check-all"></i></td>                         

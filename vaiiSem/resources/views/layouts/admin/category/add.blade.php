@@ -18,7 +18,7 @@
                         </div>                    
                     </div>   
                     <div class="col-md-12 mt-4">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary bg-green">Submit</button>
                     </div>                 
                 </form>
                 
@@ -40,7 +40,7 @@
             valid = false;
             document.getElementById('name-error').textContent = 'Name is required.';
         }
-        
+
         if (!valid) {
             e.preventDefault();
         }

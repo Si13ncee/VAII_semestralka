@@ -3,12 +3,12 @@
 
     <div class="px-5">
         <div class="col py-2">
-            <div class="card">
+            <div class="card no-transition no-hover">
                 <div class="card-header">
-                    <div class="card">
+                    <div class="card no-transition no-hover">
                         <h1>Details of Order id: {{ $order->id }}</h1>
                     </div>
-                    <div class="card">
+                    <div class="card no-transition no-hover">
                         <div class ="ml-4 mb-1">ID: {{ $order->id }}</div>
                         <div class ="ml-4 mb-1">Meno: {{ $order->name }}</div>
                         <div class ="ml-4 mb-1">E-mail: {{ $order->email }}</div>
